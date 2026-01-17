@@ -1,0 +1,73 @@
+@use 'variables' as *;
+
+header{
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-base;
+
+    .header-text{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: $gap-base;
+
+        &__title{
+            font-size: $text-big;
+            font-weight: 700;
+            color: $primary-element-color;
+            padding: $padding-base-small;
+        }
+
+        &__subtitle{
+            font-size: $text-medium;
+            font-weight: 400;
+            font-style: italic;
+            padding: $padding-base-small;
+        }
+    }
+
+    .update-schedule{
+        font-size: $text-small;
+        font-weight: 400;
+        color: $primary-text-color;
+        text-align: center;
+        padding: $padding-base-small;
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    header {
+        .header-text {
+            flex-direction: column;
+            text-align: center;
+            gap: $gap-base-small;
+
+            &__title {
+                font-size: $text-big-mobile;
+            }
+
+            &__subtitle {
+                font-size: $text-medium-mobile;
+            }
+        }
+
+        .update-schedule {
+            font-size: $text-small-mobile;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-tablet-min) and (max-width: $breakpoint-tablet-max) {
+    header {
+        .header-text {
+            &__title {
+                font-size: $text-big-tablet;
+            }
+
+            &__subtitle {
+                font-size: $text-medium-tablet;
+            }
+        }
+    }
+}

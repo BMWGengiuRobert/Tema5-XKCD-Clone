@@ -1,13 +1,65 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>XKCD Clone</title>
-  </head>
-  <body>
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XKCD Clone</title>
+</head>
+
+<body>
+  
+  <header>
+
+    <div class="header-text">
+      <div class="header-text__title">xkcd</div>
+      <div class="header-text__subtitle">A webcomic of romance,
+        sarcasm, math, and language</div>
+    </div>
+
+    <div class="update-schedule">XKCD updates every Monday, Wednesday, and Friday.</div>
+
+  </header>
+
+  <main>
+
+    <div class="comic-container">
+
+      <div class="comic-title">Comic Title</div>
+      
+      <div class="comic-buttons-upper">
+        <button class="comic-buttons-upper__first">&vert;&lt;</button>
+        <button class="comic-buttons-upper__prev">&lt; Prev</button>
+        <button class="comic-buttons-upper__random">Random</button>
+        <button class="comic-buttons-upper__next">Next &gt;</button>
+        <button class="comic-buttons-upper__last">&gt;&vert;</button>
+      </div>
+
+      <div class="comic-image">
+        <img src="https://imgs.xkcd.com/comics/sailing_rigs.png" alt="Comic Image" />
+      </div>
+
+      <div class="comic-buttons-lower">
+        <button class="comic-buttons-lower__first">&vert;&lt;</button>
+        <button class="comic-buttons-lower__prev">&lt; Prev</button>
+        <button class="comic-buttons-lower__random">Random</button>
+        <button class="comic-buttons-lower__next">Next &gt;</button>
+        <button class="comic-buttons-lower__last">&gt;&vert;</button>
+      </div>
+
+    </div>
+  
+  </main>
+
+  <footer>
+    <div class="footer-text">
+      <p>XKCD Clone</p>
+      <p>By Gengiu Robert &commat;2026</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>

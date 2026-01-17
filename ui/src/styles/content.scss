@@ -1,0 +1,68 @@
+@use 'variables' as *;
+
+main{
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    
+    .comic-container{
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .comic-title{
+            font-size: $text-medium;
+            font-weight: 600;
+            padding: $padding-base-small;
+            margin-bottom: $margin-base-small;
+        }
+
+        .comic-buttons-upper{
+            margin-bottom: $margin-base-small;
+        }
+
+        .comic-buttons-lower{
+            margin-top: $margin-base-small;
+        }
+
+        .comic-image {
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
+
+@media (max-width: $breakpoint-mobile) {
+    main {
+        .comic-container {
+            .comic-title {
+                font-size: $text-medium-mobile-comic;
+                text-align: center;
+            }
+
+            .comic-buttons-upper,
+            .comic-buttons-lower {
+                flex-wrap: wrap;
+                button {
+                    font-size: $text-small-mobile-button;
+                    padding: 6px 10px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $breakpoint-tablet-min) and (max-width: $breakpoint-tablet-max) {
+    main {
+        .comic-container {
+            .comic-title {
+                font-size: $text-medium-tablet-comic;
+            }
+        }
+    }
+}

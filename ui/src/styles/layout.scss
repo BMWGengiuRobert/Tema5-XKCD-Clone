@@ -1,0 +1,51 @@
+@use 'variables' as *;
+
+html {
+    background-color: #96a8c8;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "content"
+        "footer";
+    padding: $padding-base;
+    gap: $gap-base;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+header,
+main,
+footer {
+    background-color: $primary-bg-color;
+    padding: $padding-base;
+    border-radius: $radius-b;
+    border: 2px solid #000;
+}
+
+main .comic-buttons-upper,
+main .comic-buttons-lower {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $padding-base-small;
+    gap: $gap-base-small;
+}
+
+@media (max-width: $breakpoint-mobile) {
+    body {
+        padding: $padding-base-small;
+        gap: $gap-base-small;
+    }
+
+    header,
+    main,
+    footer {
+        padding: $padding-base-small;
+    }
+}

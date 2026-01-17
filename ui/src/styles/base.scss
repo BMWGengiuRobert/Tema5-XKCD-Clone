@@ -1,0 +1,23 @@
+@use 'variables' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Arial', sans-serif;
+}
+
+button {
+    font-family: 'Poppins', 'Arial', sans-serif;
+    font-weight: 600;
+    font-size: $text-small;
+    color: #fff;
+    background-color: $primary-element-color;
+    cursor: pointer;
+    border: 2px solid #000;
+    border-radius: 4px;
+    padding: $padding-base-small;
+}
