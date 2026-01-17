@@ -1,11 +1,12 @@
 import { updateComicUI } from './updateUI';
 import { saveComicToLocalStorage, getComicFromCache } from './localStorage';
+import { showToast } from './toast';
 
 const baseUrl = 'http://localhost:3000/comics'
 
 export async function fetchComic(comicId, isRandom = false, isFirst = false, isLatest = false) {
     
-    if (comicId && !isRandom && !isFirst && !isLatest) {
+    if (comicId !== null && comicId !== undefined && !isRandom && !isFirst && !isLatest) {
         const cachedData = getComicFromCache(comicId);
         if (cachedData) {
             console.log('Serving from cache comic with id=', comicId,' and its data', cachedData);
@@ -24,14 +25,21 @@ export async function fetchComic(comicId, isRandom = false, isFirst = false, isL
             url += '?position=first';
         } else if (isLatest) {
             url += '?position=latest';
-        } else if (comicId) {
+        } else if (comicId !== null && comicId !== undefined) {
             url += `/${comicId}`;
         }
 
         const comicAPIResponse = await fetch(url);
 
         if (!comicAPIResponse.ok) {
-            throw new Error(`HTTP error! status: ${comicAPIResponse.statusCode}\n message: ${comicAPIResponse.message}\n error: ${comicAPIResponse.error}\n code: ${comicAPIResponse.code}`);
+            if (comicAPIResponse.status === 404) {
+                showToast('Comic not found. Try another one!');
+            } else if (comicAPIResponse.status >= 500) {
+                showToast('Server error. Please try again later.');
+            } else {
+                showToast('Something went wrong. Please try again.');
+            }
+            return;
         }
 
         const comicData = await comicAPIResponse.json();
@@ -42,5 +50,6 @@ export async function fetchComic(comicId, isRandom = false, isFirst = false, isL
 
     } catch (error) {
         console.error('Error fetching comic data:', error);
+        showToast('Cannot connect to server. Check your connection.');
     }
 }

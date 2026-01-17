@@ -1,4 +1,5 @@
 import { fetchComic } from "./fetchData";
+import { setupTooltip } from "./tooltip";
 
 const comicTitle = document.querySelector('.comic-title');
 const comicImage = document.querySelector('.comic-image img');
@@ -14,9 +15,8 @@ const prevButtonLower = document.querySelector('.comic-buttons-lower__prev');
 const randomButtonLower = document.querySelector('.comic-buttons-lower__random');
 const nextButtonLower = document.querySelector('.comic-buttons-lower__next');
 const latestButtonLower = document.querySelector('.comic-buttons-lower__last');
-
-let totalComics = 0;
-let currentComicId = 0;
+let nextComicId = 0;
+let prevComicId = 0;
 
 export function updateComicUI(comicData) {
     if (!comicData) {
@@ -24,12 +24,14 @@ export function updateComicUI(comicData) {
         return;
     }
 
-    const { comic, prev, next, total } = comicData;
-    totalComics = total;
-    currentComicId = comic.index;
+    const { comic, prev, next } = comicData;
+    prevComicId = prev
+    nextComicId = next;
     comicTitle.textContent = `${comic.title}`;
     comicImage.src = comic.imgUrl;
     comicImage.alt = comic.alt;
+
+    setupTooltip(comicImage);
 
     prevButtonUpper.classList.toggle('hide-button', prev === null);
     prevButtonLower.classList.toggle('hide-button', prev === null);
@@ -42,24 +44,20 @@ firstButtonLower.addEventListener('click', () => fetchComic(-1, false, true, fal
 firstButtonUpper.addEventListener('click', () => fetchComic(-1, false, true, false));
 
 prevButtonLower.addEventListener('click', () => {
-    if (currentComicId <= 1) return;
-    fetchComic(currentComicId - 1);
+    fetchComic(prevComicId);
 });
 prevButtonUpper.addEventListener('click', () => {
-    if (currentComicId <= 1) return;
-    fetchComic(currentComicId - 1);
+    fetchComic(prevComicId);
 });
 
 randomButtonLower.addEventListener('click', () => fetchComic(null, true, false, false));
 randomButtonUpper.addEventListener('click', () => fetchComic(null, true, false, false));
 
 nextButtonLower.addEventListener('click', () => {
-    if (currentComicId >= totalComics) return;
-    fetchComic(currentComicId + 1);
+    fetchComic(nextComicId);
 });
 nextButtonUpper.addEventListener('click', () => {
-    if (currentComicId >= totalComics) return;
-    fetchComic(currentComicId + 1);
+    fetchComic(nextComicId);
 });
 
 latestButtonLower.addEventListener('click', () => fetchComic(-1, false, false, true));
